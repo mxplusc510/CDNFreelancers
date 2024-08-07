@@ -1,0 +1,82 @@
+﻿@page "{id:int?}"
+@model CDNFreelancers.Pages.UserFormModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "User Form";
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/CDNFreelancers.styles.css" asp-append-version="true" />
+
+<div class="container mt-4">
+    <h1 class="mb-4">@Model.Title</h1>
+
+    <form method="post">
+        <input type="hidden" asp-for="User.Id" />
+
+        <div class="form-group">
+            <label asp-for="User.Username" class="form-label"></label>
+            <input asp-for="User.Username" class="form-control" />
+            <span asp-validation-for="User.Username" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.Email" class="form-label"></label>
+            <input asp-for="User.Email" class="form-control" />
+            <span asp-validation-for="User.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.PhoneNumber" class="form-label"></label>
+            <input asp-for="User.PhoneNumber" class="form-control" />
+            <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.Skillsets" class="form-label"></label>
+            <input asp-for="User.Skillsets" class="form-control" />
+            <span asp-validation-for="User.Skillsets" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.Hobby" class="form-label"></label>
+            <input asp-for="User.Hobby" class="form-control" />
+            <span asp-validation-for="User.Hobby" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-page="./ListUsers" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            const email = document.querySelector('input[name="User.Email"]').value;
+            const phone = document.querySelector('input[name="User.PhoneNumber"]').value;
+
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                event.preventDefault();
+            }
+
+            if (!validatePhone(phone)) {
+                alert('Please enter a valid phone number.');
+                event.preventDefault();
+            }
+        });
+
+        function validateEmail(email) {
+            const re = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function validatePhone(phone) {
+            const re = /^\d{10}$/; 
+            return re.test(String(phone));
+        }
+    });
+</script>

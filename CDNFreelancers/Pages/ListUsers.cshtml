@@ -1,0 +1,47 @@
+﻿@page
+@model CDNFreelancers.Pages.ListUsersModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "List Users";
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/CDNFreelancers.styles.css" asp-append-version="true" />
+
+<div class="container mt-4">
+    <h1 class="mb-4">@ViewData["Title"]</h1>
+
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Skillsets</th>
+                <th>Hobby</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@user.Skillsets</td>
+                    <td>@user.Hobby</td>
+                    <td>
+                        <a class="btn btn-sm btn-warning" asp-page="./UserForm" asp-route-id="@user.Id">Edit</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@user.Id" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" asp-page="./UserForm">Register New User</a>
+</div>

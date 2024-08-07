@@ -1,0 +1,27 @@
+{
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "ListUsers"
+    },
+    "CDNFreelancers": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "ListUsers"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "launchBrowser": true,
+      "distributionName": ""
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:52450/",
+      "sslPort": 44353
+    }
+  }
+}

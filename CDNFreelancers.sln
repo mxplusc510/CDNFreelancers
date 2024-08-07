@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CDNFreelancers", "CDNFreelancers\CDNFreelancers.csproj", "{A798A1E6-EF01-44EE-B0CA-208C3375DA51}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CDNFreelancers.Tests", "Testing\CDNFreelancers.Tests.csproj", "{C93FED67-DA41-47C1-A8AD-734A4195FE97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A798A1E6-EF01-44EE-B0CA-208C3375DA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A798A1E6-EF01-44EE-B0CA-208C3375DA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A798A1E6-EF01-44EE-B0CA-208C3375DA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A798A1E6-EF01-44EE-B0CA-208C3375DA51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C93FED67-DA41-47C1-A8AD-734A4195FE97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C93FED67-DA41-47C1-A8AD-734A4195FE97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C93FED67-DA41-47C1-A8AD-734A4195FE97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C93FED67-DA41-47C1-A8AD-734A4195FE97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27CBAFDF-495E-47F7-B946-5995D683257A}
+	EndGlobalSection
+EndGlobal
