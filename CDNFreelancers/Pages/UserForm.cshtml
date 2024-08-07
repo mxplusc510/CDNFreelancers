@@ -17,66 +17,100 @@
 
         <div class="form-group">
             <label asp-for="User.Username" class="form-label"></label>
-            <input asp-for="User.Username" class="form-control" />
-            <span asp-validation-for="User.Username" class="text-danger"></span>
+            <input id="username" asp-for="User.Username" class="form-control" placeholder="e.g., johndoe" />
+            <div id="username-error" class="text-danger"></div>
         </div>
         <div class="form-group">
             <label asp-for="User.Email" class="form-label"></label>
-            <input asp-for="User.Email" class="form-control" />
-            <span asp-validation-for="User.Email" class="text-danger"></span>
+            <input id="email" asp-for="User.Email" class="form-control" placeholder="e.g., example@gmail.com" />
+            <div id="email-error" class="text-danger"></div>
         </div>
         <div class="form-group">
             <label asp-for="User.PhoneNumber" class="form-label"></label>
-            <input asp-for="User.PhoneNumber" class="form-control" />
-            <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+            <input id="phone" asp-for="User.PhoneNumber" class="form-control" placeholder="e.g., 1234567890" />
+            <div id="phone-error" class="text-danger"></div>
         </div>
         <div class="form-group">
             <label asp-for="User.Skillsets" class="form-label"></label>
-            <input asp-for="User.Skillsets" class="form-control" />
-            <span asp-validation-for="User.Skillsets" class="text-danger"></span>
+            <input asp-for="User.Skillsets" class="form-control" placeholder="e.g., Java, C#" />
         </div>
         <div class="form-group">
             <label asp-for="User.Hobby" class="form-label"></label>
-            <input asp-for="User.Hobby" class="form-control" />
-            <span asp-validation-for="User.Hobby" class="text-danger"></span>
+            <input asp-for="User.Hobby" class="form-control" placeholder="e.g., Hiking" />
         </div>
 
         <div class="d-flex justify-content-between mt-4">
             <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
             <a asp-page="./ListUsers" class="btn btn-secondary">Back to List</a>
         </div>
     </form>
-
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-    }
 </div>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const form = document.querySelector('form');
-        form.addEventListener('submit', function(event) {
-            const email = document.querySelector('input[name="User.Email"]').value;
-            const phone = document.querySelector('input[name="User.PhoneNumber"]').value;
 
-            if (!validateEmail(email)) {
-                alert('Please enter a valid email address.');
-                event.preventDefault();
-            }
+        const emailInput = document.querySelector('#email');
+        const phoneInput = document.querySelector('#phone');
+        const usernameInput = document.querySelector('#username');
 
-            if (!validatePhone(phone)) {
-                alert('Please enter a valid phone number.');
+        emailInput.addEventListener('input', function () {
+            validateEmail(emailInput.value);
+        });
+
+        phoneInput.addEventListener('input', function () {
+            validatePhone(phoneInput.value);
+        });
+
+        usernameInput.addEventListener('input', function () {
+            validateUsername(usernameInput.value);
+        });
+
+        form.addEventListener('submit', function (event) {
+            const emailValid = validateEmail(emailInput.value);
+            const phoneValid = validatePhone(phoneInput.value);
+            const usernameValid = validateUsername(usernameInput.value);
+
+            if (!emailValid || !phoneValid || !usernameValid) {
                 event.preventDefault();
             }
         });
 
         function validateEmail(email) {
-            const re = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
-            return re.test(String(email).toLowerCase());
+            const re = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]{2,}$/;
+            const errorElement = document.querySelector('#email-error');
+            if (re.test(String(email).toLowerCase())) {
+                errorElement.textContent = '';
+                return true;
+            } else {
+                errorElement.textContent = 'Please enter a valid email address.';
+                return false;
+            }
         }
 
         function validatePhone(phone) {
-            const re = /^\d{10}$/; 
-            return re.test(String(phone));
+            const re = /^\d{10}$/;
+            const errorElement = document.querySelector('#phone-error');
+            if (re.test(String(phone))) {
+                errorElement.textContent = '';
+                return true;
+            } else {
+                errorElement.textContent = 'Please enter a valid phone number (10 digits).';
+                return false;
+            }
+        }
+
+        function validateUsername(username) {
+            const errorElement = document.querySelector('#username-error');
+            if (username.trim() !== '') {
+                errorElement.textContent = '';
+                return true;
+            } else {
+                errorElement.textContent = 'Username cannot be empty.';
+                return false;
+            }
         }
     });
 </script>
